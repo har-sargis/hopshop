@@ -30,16 +30,8 @@ const config: Config = {
       },
       borderRadius: {
         "10": "0.625rem",
+        "11": "2.5rem",
       },
-      // fontFamily: {
-      //   montserrat: ["Montserrat", "sans-serif"],
-      // },
-      // fontWeight: {
-      //   light: "300",
-      //   regular: "400",
-      //   medium: "500",
-      //   bold: "700",
-      // },
     },
   },
   plugins: [],

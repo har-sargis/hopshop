@@ -26,13 +26,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className='p-4'>
           <div className='flex justify-between items-center mb-5'>
             <Image src={logo.src} width={95} height={15} alt='hop shop' />
-            <Link className='text-brand-blue-light font-montserrat font-medium' href='/create'>
+            <Link className='text-brand-blue-light font-medium' href='/create'>
               Create Shop
             </Link>
           </div>
           <ProfileComponent username='placeholder' imageSrc='https://via.placeholder.com/150' />
         </header>
-        {children}
+        <main className='p-4 pt-0'>{children}</main>
       </body>
     </html>
   );

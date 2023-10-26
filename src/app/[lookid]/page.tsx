@@ -1,9 +1,5 @@
-import InfluencerStorefront from "@/views/Influencer";
+import Look from "@/views/Look";
 
 export default function Home() {
-  return (
-    <main className="p-4 pt-0">
-      look here
-    </main>
-  );
+  return <Look />;
 }

@@ -8,8 +8,14 @@ import clsx from "clsx";
 
 import album from "@assets/assets/svg/album.svg";
 
+interface IItem {
+  width: number;
+  height: number;
+  src: string;
+}
+
 type CarouselProps = {
-  images: string[];
+  images: IItem[];
 };
 
 const Carousel: React.FC<CarouselProps> = ({ images }) => {
@@ -58,7 +64,7 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
 
   return (
     <div
-      className='relative w-full h-[500px] overflow-hidden rounded-10'
+      className='relative w-full h-full overflow-hidden rounded-10'
       style={{ height: imageHeight || "auto" }}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
@@ -68,17 +74,9 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
         className='absolute top-0 left-0 flex w-full h-full transition-transform duration-300 ease-in-out'
         style={{ transform: `translateX(-${activeIndex * 100}%)` }}
       >
-        {images.map((imgSrc, idx) => (
+        {images.map(({ src, height, width }, idx) => (
           <Link href='/1' key={idx} className='relative w-full h-full flex-shrink-0'>
-            <Image
-              src={imgSrc}
-              alt={`Slide ${idx}`}
-              objectFit='cover'
-              onLoad={handleImageLoad}
-              width={500}
-              height={300}
-              layout='responsive'
-            />
+            <Image src={src} alt={`Slide ${idx}`} objectFit='cover' width={width} height={height} layout='responsive' />
           </Link>
         ))}
       </div>
