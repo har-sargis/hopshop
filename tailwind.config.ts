@@ -32,6 +32,13 @@ const config: Config = {
         "10": "0.625rem",
         "11": "2.5rem",
       },
+      boxShadow: {
+        custom: "-28px -4px 168px 65px rgba(0,0,0,0.33)",
+      },
+      height: {
+        v9: "95vh",
+        v8: "85vh",
+      },
     },
   },
   plugins: [],

@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import BottomSheet from "@/components/BottomSheet";
-import MasonryGrid from "@/components/MasonryGrid";
+import MasonryGrid from "@/components/MasonryGrid/ProductFeed";
 
 const images = Array.from({ length: 100 }, (_, index) => {
   const width = 500;

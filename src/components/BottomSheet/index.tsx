@@ -1,51 +1,57 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, TouchEvent } from "react";
 
 interface BottomSheetProps {
   children: React.ReactNode;
 }
 
+const clamp = (value: number, min: number, max: number): number => {
+  return Math.min(Math.max(value, min), max);
+};
+
 const BottomSheet: React.FC<BottomSheetProps> = ({ children }) => {
-  const bottomSheetRef = useRef<HTMLDivElement | null>(null);
-  const [translateY, setTranslateY] = useState(80); // Start at the "closed" state
-  const [isDragging, setIsDragging] = useState(false);
-  const [startY, setStartY] = useState<number | null>(null);
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(true);
-    setStartY(e.clientY);
+  const [transform, setTransform] = useState(window.innerHeight - 60);
+  const startY = useRef<number | null>(null);
+  const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
+    const touch = e.touches[0];
+    startY.current = touch.clientY;
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || !startY) return;
-    const deltaY = e.clientY - startY;
-    const newTranslation = Math.min(Math.max(translateY + (deltaY * 100) / window.innerHeight, 0), 80);
-    setTranslateY(newTranslation);
-    setStartY(e.clientY);
+  const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
+    if (!startY.current) return;
+
+    const touch = e.touches[0];
+
+    setTransform(touch.clientY);
   };
 
-  const handleMouseUp = () => {
-    setIsDragging(false);
-    setStartY(null);
+  const handleTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
+    if (!startY.current) return;
+    const touch = e.changedTouches[0];
+    const deltaY = startY.current - touch.clientY;
+    const isSwipeUp = touch.clientY < startY.current;
+    console.log(deltaY);
+    console.log(isSwipeUp);
+    if (!isSwipeUp) {
+      Math.abs(deltaY) > 200 ? setTransform(window.innerHeight - 60) : setTransform(10);
+    } else if (isSwipeUp) {
+      Math.abs(deltaY) > 200 ? setTransform(10) : setTransform(window.innerHeight - 60);
+    }
   };
 
   return (
     <div
-      ref={bottomSheetRef}
-      className='fixed bottom-0 left-0 w-full bg-white rounded-t-lg shadow-lg transition-transform duration-300 ease-out'
-      style={{ transform: `translateY(${translateY}%)` }}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
+      className='h-screen fixed bottom-0 left-0 w-full bg-white rounded-11 transition-transform duration-300 ease-out shadow-custom'
+      style={{ transform: `translateY(${transform}px)` }}
     >
-      <div className='flex justify-center py-4'>
-        <div className='w-16 h-1 bg-gray-400 rounded-full'></div>
+      <div onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
+        <div className='flex justify-center py-4'>
+          <div className='w-16 h-1 bg-gray-400 rounded-full'></div>
+        </div>
+        <div className='font-medium text-base text-center mb-4'>Visual Matches</div>
       </div>
-      <div className='font-medium text-base text-center mb-4'>Visual Matches</div>
-      <div className='overflow-y-auto p-4' style={{ maxHeight: "70vh" }}>
-        {children}
-      </div>
+      <div className='overflow-y-auto p-4 h-v8'>{children}</div>
     </div>
   );
 };
