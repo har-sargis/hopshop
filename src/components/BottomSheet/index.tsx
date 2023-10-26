@@ -6,9 +6,6 @@ interface BottomSheetProps {
   children: React.ReactNode;
 }
 
-const clamp = (value: number, min: number, max: number): number => {
-  return Math.min(Math.max(value, min), max);
-};
 
 const BottomSheet: React.FC<BottomSheetProps> = ({ children }) => {
   const [transform, setTransform] = useState(window.innerHeight - 60);
