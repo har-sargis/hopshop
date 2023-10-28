@@ -1,4 +1,5 @@
 import MasonryGrid from "@/components/MasonryGrid";
+import Virtualized from "@/components/Virtualized";
 
 const images = Array.from({ length: 100 }, (_, index) => {
   const width = 500;
@@ -39,7 +40,8 @@ const InfluencerStorefront = () => {
   return (
     <>
       <p className='font-medium text-center text-lg pb-4'>Shop my look</p>
-      <MasonryGrid items={images} />
+      {/* <MasonryGrid items={images} /> */}
+      <Virtualized />
     </>
   );
 };

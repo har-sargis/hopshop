@@ -31,8 +31,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
         height={height}
         layout='responsive'
       />
-      <h3 className='text-xs font-medium mt-2'>{brand}</h3>
-      <p className='text-gray-600 text-xs font-thin text-ellipsis overflow-hidden whitespace-nowrap'>{description}</p>
+      <h3 className='text-sm font-medium mt-2'>{brand}</h3>
+      <p className='text-gray-600 text-sm font-thin text-ellipsis overflow-hidden whitespace-nowrap'>{description}</p>
       <div className='mt-2 flex items-center gap-y-1'>
         <span className='text-sm font-medium text-red-500'>${currentPrice}</span>
         <span className='text-sm font-medium text-gray-400 line-through'>${originalPrice}</span>

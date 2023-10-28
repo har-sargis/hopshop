@@ -6,6 +6,7 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/views/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/hooks/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -38,6 +39,9 @@ const config: Config = {
       height: {
         v9: "95vh",
         v8: "85vh",
+      },
+      translate: {
+        "full/2": "150%",
       },
     },
   },

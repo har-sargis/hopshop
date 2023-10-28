@@ -6,7 +6,6 @@ interface BottomSheetProps {
   children: React.ReactNode;
 }
 
-
 const BottomSheet: React.FC<BottomSheetProps> = ({ children }) => {
   const [transform, setTransform] = useState(window.innerHeight - 60);
   const startY = useRef<number | null>(null);
@@ -28,8 +27,6 @@ const BottomSheet: React.FC<BottomSheetProps> = ({ children }) => {
     const touch = e.changedTouches[0];
     const deltaY = startY.current - touch.clientY;
     const isSwipeUp = touch.clientY < startY.current;
-    console.log(deltaY);
-    console.log(isSwipeUp);
     if (!isSwipeUp) {
       Math.abs(deltaY) > 200 ? setTransform(window.innerHeight - 60) : setTransform(10);
     } else if (isSwipeUp) {
