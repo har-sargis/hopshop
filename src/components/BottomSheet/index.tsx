@@ -7,7 +7,7 @@ interface BottomSheetProps {
 }
 
 const BottomSheet: React.FC<BottomSheetProps> = ({ children }) => {
-  const [transform, setTransform] = useState(window.innerHeight - 60);
+  const [transform, setTransform] = useState(window.innerHeight - 120);
   const startY = useRef<number | null>(null);
   const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
     const touch = e.touches[0];
@@ -36,7 +36,7 @@ const BottomSheet: React.FC<BottomSheetProps> = ({ children }) => {
 
   return (
     <div
-      className='h-screen fixed bottom-0 left-0 w-full bg-white rounded-11 transition-transform duration-300 ease-out shadow-custom'
+      className='h-screen fixed bottom-0 left-0 w-full bg-gray-4 rounded-11 transition-transform duration-300 ease-out shadow-custom'
       style={{ transform: `translateY(${transform}px)` }}
     >
       <div onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>

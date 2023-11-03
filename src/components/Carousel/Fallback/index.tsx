@@ -2,25 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState, useRef, useEffect } from "react";
+import { useParams } from "next/navigation";
+import React, { useState, useEffect } from "react";
 
 import clsx from "clsx";
 
+import { Carousel } from "@/types";
 import album from "@assets/assets/svg/album.svg";
+const Carousel: React.FC<Carousel> = ({ images, width, height }) => {
+  const params = useParams();
 
-interface IItem {
-  width: number;
-  height: number;
-  src: string;
-}
-
-type CarouselProps = {
-  images: IItem[];
-};
-
-const Carousel: React.FC<CarouselProps> = ({ images }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [imageHeight, setImageHeight] = useState<number | null>(null);
   const [isTouch, setIsTouch] = useState(false);
   const [startX, setStartX] = useState(0);
 
@@ -30,12 +22,6 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
 
   const prevSlide = () => {
     setActiveIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-  };
-
-  const handleImageLoad = (event: any) => {
-    if (event.currentTarget) {
-      setImageHeight(event.currentTarget.height);
-    }
   };
 
   const handleTouchStart = (event: any) => {
@@ -65,7 +51,7 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
   return (
     <div
       className='relative w-full h-full overflow-hidden rounded-10'
-      style={{ height: imageHeight || "auto" }}
+      style={{ height: "auto" }}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
@@ -74,9 +60,27 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
         className='absolute top-0 left-0 flex w-full h-full transition-transform duration-300 ease-in-out'
         style={{ transform: `translateX(-${activeIndex * 100}%)` }}
       >
-        {images.map(({ src, height, width }, idx) => (
-          <Link href='/1' key={idx} className='relative w-full h-full flex-shrink-0'>
-            <Image src={src} alt={`Slide ${idx}`} objectFit='cover' width={width} height={height} layout='responsive' />
+        {images.map(({ imageUrl, postId, size }, idx) => (
+          <Link
+            href={{
+              pathname: `${params.username}/${postId}`,
+              query: {
+                image_url: imageUrl,
+                width: size.width,
+                height: size.height,
+              },
+            }}
+            key={idx}
+            className='relative w-full h-full flex-shrink-0'
+          >
+            <Image
+              src={imageUrl}
+              alt={`Slide ${idx}`}
+              width={width}
+              height={height}
+              priority={idx === activeIndex || idx === activeIndex + 1}
+              sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 700px'
+            />
           </Link>
         ))}
       </div>

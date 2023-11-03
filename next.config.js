@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverActions: true,
+  },
   images: {
-    domains: ["via.placeholder.com", "placeimg.com", "placekitten.com", "www.placecage.com", "picsum.photos"],
+    domains: ["storage.googleapis.com"],
   },
   transpilePackages: ["lucide-react"],
 };

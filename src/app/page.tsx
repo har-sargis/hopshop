@@ -1,5 +1,7 @@
-import InfluencerStorefront from "@/views/Influencer";
+import LandingView from "@/views/Landing";
 
-export default function Home() {
-  return <InfluencerStorefront />;
-}
+const Landing = () => {
+  return <LandingView />;
+};
+
+export default Landing;

@@ -1,47 +1,28 @@
-import MasonryGrid from "@/components/MasonryGrid";
+"use client";
+
+import { useCallback, useEffect } from "react";
+
 import Virtualized from "@/components/Virtualized";
+import { useGetInfluencerLooks, useGetInfluencerProfile } from "@/services/react-query/influencer";
+import { Post } from "@/types";
 
-const images = Array.from({ length: 100 }, (_, index) => {
-  const width = 500;
-  const height = Math.floor(Math.random() * (500 - 300 + 1) + 300);
-  return index % 4 === 0
-    ? {
-        images: [
-          {
-            width,
-            height,
-            src: `https://picsum.photos/seed/${index}/500/${height}`,
-          },
-          {
-            width,
-            height,
-            src: `https://picsum.photos/seed/${index}/500/${height}`,
-          },
-          {
-            width,
-            height,
-            src: `https://picsum.photos/seed/${index}/500/${height}`,
-          },
-          {
-            width,
-            height,
-            src: `https://picsum.photos/seed/${index}/500/${height}`,
-          },
-        ],
-      }
-    : {
-        src: `https://picsum.photos/seed/${index}/500/${height}`,
-        width,
-        height,
-      };
-});
+const InfluencerStorefront = ({ param }: { param: string }) => {
+  const { data: posts, fetchNextPage, hasNextPage } = useGetInfluencerLooks(param, 0);
 
-const InfluencerStorefront = () => {
+  const getNextPosts = useCallback(() => {
+    hasNextPage && fetchNextPage();
+  }, [hasNextPage, fetchNextPage]);
+
   return (
     <>
       <p className='font-medium text-center text-lg pb-4'>Shop my look</p>
-      {/* <MasonryGrid items={images} /> */}
-      <Virtualized />
+      {posts?.pages.length && (
+        <Virtualized
+          items={posts?.pages?.reduce((acc, curr) => acc.concat(curr.items), [] as Post[])}
+          gutterSize={10}
+          fetchNext={getNextPosts}
+        />
+      )}
     </>
   );
 };

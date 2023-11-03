@@ -3,15 +3,7 @@
 import dynamic from "next/dynamic";
 import React, { useState, useLayoutEffect } from "react";
 
-interface IItem {
-  width: number;
-  height: number;
-  src: string;
-}
-
-type CarouselProps = {
-  images: IItem[];
-};
+import { CarouselProps } from "@/types";
 
 export default function ParentComponent(props: CarouselProps) {
   const [supportsScrollSnap, setSupportsScrollSnap] = useState(false);

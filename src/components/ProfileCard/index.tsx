@@ -1,17 +1,19 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
-type ProfileComponentProps = {
-  imageSrc: string;
-  username: string;
-};
+import { ProfileCardProps } from "@/types";
 
-function ProfileComponent({ imageSrc, username }: ProfileComponentProps) {
+function ProfileComponent({ username, image }: ProfileCardProps) {
   return (
-    <div className="flex items-center bg-white p-2 rounded-lg border border-grey gap-2">
-      <Image src={imageSrc} alt="Profile" width={40} height={40} className=" rounded-full"/>
-      <span className="text-gray-800">@{username}</span>
-    </div>
+    username && (
+      <div className='p-2 rounded-lg border border-grey mx-4 mb-4'>
+        <Link href={`/${username}`} className='flex items-center gap-2'>
+          <Image src={image} alt='Profile' width={40} height={40} className=' rounded-full' />
+          <span className='text-gray-800'>{username}</span>
+        </Link>
+      </div>
+    )
   );
 }
 
