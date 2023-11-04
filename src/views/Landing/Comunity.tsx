@@ -1,23 +1,35 @@
+import Image from "next/image";
 import Link from "next/link";
+
+
 
 import { getFeaturedInfluencers } from "@/services/axios/request";
 
+
+
 import styles from "./styles.module.css";
 
-const Users = [1, 2, 3, 4, 5];
 
-const Influencer = () => {
-  return <div className='rounded-full border-4 border-white -mr-10' style={{ height: 160, width: 160 }}></div>;
+const Influencer = ({ image }: { image: string }) => {
+  return (
+    <div
+      className='rounded-full border-4 border-white -mr-10 overflow-hidden relative'
+      style={{ height: 160, width: 160 }}
+    >
+      <Image src={image} layout='reponsive' alt='influencer working iwth hopshop' fill />
+    </div>
+  );
 };
 async function Comunity() {
   const users = await getFeaturedInfluencers();
+  console.log(users);
   return (
     <section className='pt-20 pb-14 px-40 '>
       <div className='bg-gray-7 rounded-12 p-12 flex flex-col gap-14 justify-center items-center'>
         <h2 className='text-gray-5 font-medium text-5xl text-center'>Join the HopShop Community Today</h2>
         <div className='flex'>
-          {Users.map((user) => (
-            <Influencer key={user} />
+          {users.map((user) => (
+            <Influencer key={user} image={user.profilePicUrl} />
           ))}
         </div>
         <p className={`text-gray-5 opacity-70 font-thin text-center ${styles.comunitySubtitle}`}>

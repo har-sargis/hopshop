@@ -6,7 +6,6 @@ import { getPartners } from "@/services/axios/request";
 
 async function Partners() {
   const partners = await getPartners();
-  console.log(partners);
   return (
     <div className='flex flex-col items-center py-10 p-40 overflow-x-auto'>
       <h2 className='text-4xl font-semibold mb-2'>Our Partners</h2>
