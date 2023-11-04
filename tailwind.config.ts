@@ -23,6 +23,7 @@ const config: Config = {
         "gray-5": "#3b3d50",
         "gray-6": "rgb(59, 61, 80)",
         "gray-7": "#f7f7fa",
+        "gray-8": "#D7D7E4",
         "state-red": "#D90101",
         "state-purple": "#7673DC",
       },
@@ -48,6 +49,10 @@ const config: Config = {
       height: {
         v9: "95vh",
         v8: "85vh",
+        18: "72px",
+      },
+      width: {
+        18: "72px",
       },
       translate: {
         "full/2": "150%",

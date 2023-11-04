@@ -1,9 +1,9 @@
 import Image from "next/image";
 
 import AnchorTag from "@/components/Anchor";
-import fb from "@assets/assets/images/fb.svg";
-import instagram from "@assets/assets/images/inst.svg";
-import linkedin from "@assets/assets/images/lin.svg";
+import fb from "@assets/assets/svg/fb.svg";
+import instagram from "@assets/assets/svg/inst.svg";
+import linkedin from "@assets/assets/svg/lin.svg";
 import logo from "@assets/hopshop_logo_light.svg";
 
 function Footer() {

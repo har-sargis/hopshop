@@ -3,11 +3,13 @@
 import Image from "next/image";
 import { useMemo, useState } from "react";
 
-import BottomSheet from "@/components/BottomSheet";
-import MasonryGrid from "@/components/MasonryGrid/ProductFeed";
+
+
 import type { ILook, SimilarProduct, Vertices, Point } from "@/types";
 
 import styles from "./styles.module.css";
+import BottomSheet from "@/components/BottomSheet";
+import MasonryGrid from "@/components/MasonryGrid/ProductFeed";
 
 function calculateCenter(rect: Vertices): Point {
   const centerX = (rect.bottomLeft.x + rect.topRight.x) / 2;

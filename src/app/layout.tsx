@@ -5,13 +5,9 @@ import Link from "next/link";
 
 
 
+import "./globals.css";
 import Providers from "@/providers";
 import logo from "@assets/hopshop_logo.svg";
-
-
-
-import "./globals.css";
-
 
 const inter = Montserrat({
   weight: ["400", "500", "600", "700"],
@@ -30,8 +26,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en'>
+      <head>
+        <link rel='icon' href='/favicon.ico' sizes='any' />
+      </head>
       <body className={inter.className}>
-        <header className='py-3 px-4'>
+        <header className='py-3 px-4 lg:px-40'>
           <div className='flex justify-between items-center bg-white'>
             <Link href='/'>
               <Image src={logo.src} width={159} height={25} alt='hop shop' />

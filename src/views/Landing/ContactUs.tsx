@@ -1,11 +1,3 @@
-import Image from "next/image";
-
-import AnchorTag from "@/components/Anchor";
-import fb from "@assets/assets/images/fb.svg";
-import instagram from "@assets/assets/images/inst.svg";
-import linkedin from "@assets/assets/images/lin.svg";
-import logo from "@assets/hopshop_logo_light.svg";
-
 function ContuctUs() {
   return (
     <section className='py-24  bg-brand-blue-light flex justify-center flex-col items-center gap-4'>

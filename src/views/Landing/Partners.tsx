@@ -8,8 +8,8 @@ async function Partners() {
   const partners = await getPartners();
   return (
     <div className='flex flex-col items-center py-10 p-40 overflow-x-auto'>
-      <h2 className='text-4xl font-semibold mb-2'>Our Partners</h2>
-      <p className='text-center mb-10'>
+      <h2 className='text-5xl font-medium mb-2 text-gray-5'>Our Partners</h2>
+      <p className='text-center mb-10 text-sm text-gray-5 opacity-70'>
         We partner with over 500 leading brands and retailers worldwide, and our portfolio expands day by day.
       </p>
 
