@@ -1,6 +1,6 @@
-import { PROFILE_API, SIMILAR_API, FEATURED_API } from "@/configs/constats";
+import { PROFILE_API, SIMILAR_API, FEATURED_API, PARTNERS_API } from "@/configs/constats";
 
-import { InfluencerProfile, SimilarData } from "@/types";
+import type { InfluencerProfile, SimilarData, Partner } from "@/types";
 
 import apiService from "./apiService";
 
@@ -34,4 +34,8 @@ export const getSimilarLooks = async ({
 
 export const getFeaturedInfluencers = async () => {
   return apiService.get(FEATURED_API);
+};
+
+export const getPartners = async (): Promise<Partner[]> => {
+  return apiService.get(PARTNERS_API);
 };

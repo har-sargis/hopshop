@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { getFeaturedInfluencers } from "@/services/axios/request";
+
 import styles from "./styles.module.css";
 
 const Users = [1, 2, 3, 4, 5];
@@ -7,7 +9,8 @@ const Users = [1, 2, 3, 4, 5];
 const Influencer = () => {
   return <div className='rounded-full border-4 border-white -mr-10' style={{ height: 160, width: 160 }}></div>;
 };
-function Comunity() {
+async function Comunity() {
+  const users = await getFeaturedInfluencers();
   return (
     <section className='pt-20 pb-14 px-40 '>
       <div className='bg-gray-7 rounded-12 p-12 flex flex-col gap-14 justify-center items-center'>

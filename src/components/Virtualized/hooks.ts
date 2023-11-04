@@ -6,20 +6,23 @@ import type { Post } from "@/types";
 
 const gap = 10;
 const totalPadding = 16 * 2;
+const dekstopColCount = 4;
+const mobileColCount = 2;
+
 export const useGetColumnWidth = () => {
   const [columnWidth, setColumnWidth] = useState<number>(getResponsiveWidth());
   const [windowWith, setWindowWidth] = useState<number>(window.innerWidth - totalPadding);
 
   function getResponsiveWidth(): number {
     const windowWidth = window.innerWidth;
-    // Calculate the available width after subtracting padding
-    const availableWidth = windowWidth - totalPadding - gap;
 
-    // Calculate the maximum number of columns we can fit, accounting for the gap
-    const maxColumns = availableWidth < 700 ? 2 : 4;
+    const availableWidth = windowWidth - totalPadding;
+    const notDesktop = availableWidth < 700;
 
-    // Calculate the width of each column, dividing the available width by the number of columns and subtracting the gap
-    return availableWidth / maxColumns;
+    const gapsSum = notDesktop ? gap : (dekstopColCount - 1) * gap;
+
+    const maxColumns = notDesktop ? mobileColCount : dekstopColCount;
+    return (availableWidth - gapsSum) / maxColumns;
   }
 
   useEffect(() => {

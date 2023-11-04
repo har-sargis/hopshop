@@ -6,16 +6,7 @@
 
 module.exports = {
   plugins: ["@trivago/prettier-plugin-sort-imports"],
-  importOrder: [
-    "^next|^react",
-    "^([@|(\\w)])",
-    "^(?!(react|@core/))\\w+",
-    "^@views",
-    "^@/@types",
-    "^@/hooks|^@/configs",
-    "^@styles|^@utils",
-    "^.",
-  ],
+  importOrder: ["^next|^react", "^(?!(react|@core/))\\w+", "^@views", "^@/@types", "^@/hooks|^@/configs", "^."],
   importOrderSeparation: true,
   importOrderSortSpecifiers: false,
   importOrderCaseInsensitive: true,

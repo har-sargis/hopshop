@@ -7,7 +7,7 @@ interface BottomSheetProps {
 }
 
 const BottomSheet: React.FC<BottomSheetProps> = ({ children }) => {
-  const [transform, setTransform] = useState(window.innerHeight - 120);
+  const [transform, setTransform] = useState(window ? window.innerHeight - 120 : 0);
   const startY = useRef<number | null>(null);
   const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
     const touch = e.touches[0];
